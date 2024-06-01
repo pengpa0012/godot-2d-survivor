@@ -2,6 +2,7 @@ extends CharacterBody2D
 const SPEED = 150.0
 
 @export var bullet_scene: PackedScene = preload("res://scene/projectile.tscn")
+@onready var aim = get_node("aim")
 
 func _physics_process(delta):
 	
@@ -19,15 +20,13 @@ func _physics_process(delta):
 		
 	
 	if Input.is_action_just_pressed("ui_accept") && is_instance_valid(self):
-		shoot()
+		shoot(delta)
 
 	move_and_slide()
 	
 	
-func shoot():
-	var bullet = bullet_scene.instantiate() as CharacterBody2D
-	get_parent().add_child(bullet)
-	bullet.position.x = self.global_position.x + 30
-	bullet.position.y = self.global_position.y + 30
-	bullet.rotation = self.rotation
-	bullet.velocity.x *= 100
+func shoot(delta):
+	var bullet = bullet_scene.instantiate() as Area2D
+	bullet.position = self.position
+	bullet.transform = aim.transform
+	add_child(bullet)

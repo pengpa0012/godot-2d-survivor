@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxgeferijl2u"]
+[gd_scene load_steps=5 format=3 uid="uid://cxgeferijl2u"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_uhno3"]
 [ext_resource type="Texture2D" uid="uid://bhyxpw32i750f" path="res://icon.svg" id="1_xc014"]
+[ext_resource type="Script" path="res://script/aim.gd" id="2_bll8h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4dsk"]
 size = Vector2(42.5, 42.5)
@@ -9,7 +10,10 @@ size = Vector2(42.5, 42.5)
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_uhno3")
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="aim" type="Marker2D" parent="."]
+script = ExtResource("2_bll8h")
+
+[node name="Icon" type="Sprite2D" parent="aim"]
 scale = Vector2(0.371094, 0.371094)
 texture = ExtResource("1_xc014")
 
