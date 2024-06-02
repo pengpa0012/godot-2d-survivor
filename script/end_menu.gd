@@ -1,0 +1,11 @@
+extends Node2D
+
+
+func _ready():
+	$score.text = "Your Score: " + str(Global.SCORE)
+
+
+func _on_button_pressed():
+	Global.HEALTH = 5
+	Global.SCORE = 0
+	get_tree().change_scene_to_file("res://scene/world.tscn")

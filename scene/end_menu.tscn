@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://06b4r4ftv4eb"]
+
+[ext_resource type="Script" path="res://script/end_menu.gd" id="1_p584p"]
+
+[node name="end_menu" type="Node2D"]
+position = Vector2(576, 320)
+script = ExtResource("1_p584p")
+
+[node name="score" type="Label" parent="."]
+offset_left = -48.0
+offset_top = -56.0
+offset_right = 40.0
+offset_bottom = -33.0
+text = "Your Score:"
+
+[node name="Button" type="Button" parent="."]
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 33.0
+offset_bottom = 15.0
+text = "Restart"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
