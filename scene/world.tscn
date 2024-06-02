@@ -57,6 +57,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 
 [node name="upgrade_list" type="PanelContainer" parent="player/Camera2D"]
+process_mode = 3
+visible = false
 self_modulate = Color(0.122252, 0.122252, 0.122252, 1)
 offset_left = -232.0
 offset_top = -299.0
@@ -64,13 +66,8 @@ offset_right = 230.0
 offset_bottom = 270.0
 script = ExtResource("4_kt5w1")
 
-[node name="Button" type="Button" parent="player/Camera2D/upgrade_list"]
-self_modulate = Color(0.74902, 0.74902, 0.74902, 1)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Option 1"
-
 [node name="margin_panel" type="MarginContainer" parent="player/Camera2D/upgrade_list"]
+self_modulate = Color(1, 0.0156863, 0.32549, 1)
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
@@ -79,8 +76,8 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Button2" type="Button" parent="player/Camera2D/upgrade_list/margin_panel/VBoxContainer"]
-self_modulate = Color(0.74978, 0.74978, 0.74978, 1)
+[node name="Button" type="Button" parent="player/Camera2D/upgrade_list/margin_panel/VBoxContainer"]
+self_modulate = Color(0.74902, 0.74902, 0.74902, 1)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Option 1"
@@ -88,5 +85,5 @@ text = "Option 1"
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="pressed" from="player/Camera2D/upgrade_list/Button" to="player/Camera2D/upgrade_list" method="_on_button_pressed"]
+[connection signal="pressed" from="player/Camera2D/upgrade_list/margin_panel/VBoxContainer/Button" to="player/Camera2D/upgrade_list" method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

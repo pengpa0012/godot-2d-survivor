@@ -23,7 +23,9 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 			Global.UPGRADE_SCORE = 0
 			
 		scoreUI.text = "Score: " + str(Global.SCORE)
-		body.queue_free()
+		body.HEALTH -= 1
+		if body.HEALTH <= 0:
+			body.queue_free()
 		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

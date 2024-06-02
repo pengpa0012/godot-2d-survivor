@@ -8,4 +8,6 @@ func _ready():
 func _on_button_pressed():
 	Global.HEALTH = 5
 	Global.SCORE = 0
+	Global.UPGRADE_SCORE = 0.000
+	Global.UPGRADE_SCORE_TARGET = 500
 	get_tree().change_scene_to_file("res://scene/world.tscn")

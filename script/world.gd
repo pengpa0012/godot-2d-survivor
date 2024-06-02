@@ -13,5 +13,7 @@ func _on_timer_timeout():
 		var enemy = enemy_scene.instantiate() as CharacterBody2D
 		enemy.position.x = player.position.x + randi_range(-1000, 1000)
 		enemy.position.y = player.position.y + randi_range(-1000, 1000)
+		# Adjust health depends on score
 		enemies.add_child(enemy)
 		$Timer.start()
+

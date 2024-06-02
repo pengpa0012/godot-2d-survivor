@@ -4,6 +4,7 @@ const SPEED = 150.0
 @export var bullet_scene: PackedScene = preload("res://scene/projectile.tscn")
 @onready var aim = get_node("aim")
 @onready var healthUI = get_node("/root/world/player/Camera2D/health")
+@onready var fireTimer = $fire
 
 func _physics_process(delta):
 	# PLAYER MOVEMENT
@@ -39,4 +40,4 @@ func _on_hitbox_area_entered(area):
 func _on_fire_timeout():
 	if is_instance_valid(self):
 		shoot()
-		$fire.start()
+		fireTimer.start()
