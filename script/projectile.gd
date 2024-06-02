@@ -1,6 +1,8 @@
 extends Area2D
 
 var speed = 750
+@onready var scoreUI = get_node("/root/world/player/Camera2D/score")
+@onready var player = get_node("/root/world/player")
 
 func _process(delta):
 	position += transform.x * speed * delta
@@ -8,6 +10,8 @@ func _process(delta):
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body.name != "player":
+		player.SCORE += 10 + randi_range(1, 5)
+		scoreUI.text = "Score: " + str(player.SCORE)
 		body.queue_free()
 		queue_free()
 

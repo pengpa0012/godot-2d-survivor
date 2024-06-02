@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxgdhq8b6ktc"]
+[gd_scene load_steps=5 format=3 uid="uid://dxgdhq8b6ktc"]
 
 [ext_resource type="Script" path="res://script/enemy.gd" id="1_ntoe2"]
 [ext_resource type="Texture2D" uid="uid://bhyxpw32i750f" path="res://icon.svg" id="1_ou4e2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xhui"]
 size = Vector2(39.25, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djo22"]
+size = Vector2(40, 40)
 
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_ntoe2")
@@ -15,3 +18,9 @@ texture = ExtResource("1_ou4e2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2xhui")
+
+[node name="enemy" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
+shape = SubResource("RectangleShape2D_djo22")
+debug_color = Color(0.9948, 0, 0.216148, 0.42)

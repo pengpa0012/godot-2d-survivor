@@ -13,6 +13,20 @@ position = Vector2(512, 366)
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(1, 0)
 
+[node name="health" type="Label" parent="player/Camera2D"]
+offset_left = -561.0
+offset_top = -318.0
+offset_right = -491.0
+offset_bottom = -295.0
+text = "Health: 5"
+
+[node name="score" type="Label" parent="player/Camera2D"]
+offset_left = -473.0
+offset_top = -318.0
+offset_right = -425.0
+offset_bottom = -295.0
+text = "Score: 0"
+
 [node name="enemies" type="Node2D" parent="."]
 
 [node name="enemy3" parent="enemies" instance=ExtResource("2_iquds")]

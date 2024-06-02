@@ -3,9 +3,12 @@ const SPEED = 150.0
 
 @export var bullet_scene: PackedScene = preload("res://scene/projectile.tscn")
 @onready var aim = get_node("aim")
+@onready var healthUI = get_node("/root/world/player/Camera2D/health")
+
+var HEALTH = 5
+var SCORE = 0
 
 func _physics_process(delta):
-	
 	# PLAYER MOVEMENT
 	var directionX = Input.get_axis("ui_left", "ui_right")
 	var directionY = Input.get_axis("ui_up", "ui_down")
@@ -30,3 +33,10 @@ func shoot(delta):
 	bullet.position = self.position
 	bullet.transform = aim.transform
 	add_child(bullet)
+
+func _on_hitbox_area_entered(area):
+	if area.name == "enemy":
+		HEALTH -= 1
+	healthUI.text = "Health: " + str(HEALTH)
+	if HEALTH <= 0:
+		queue_free()
