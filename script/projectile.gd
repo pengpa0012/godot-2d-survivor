@@ -2,6 +2,8 @@ extends Area2D
 
 var speed = 750
 @onready var scoreUI = get_node("/root/world/player/Camera2D/score")
+@onready var upgradeScoreUI = get_node("/root/world/player/Camera2D/upgrade_score")
+@onready var upgradeListUI = get_node("/root/world/player/Camera2D/upgrade_list")
 
 func _process(delta):
 	position += transform.x * speed * delta
@@ -10,6 +12,16 @@ func _process(delta):
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body.name != "player":
 		Global.SCORE += 10 + randi_range(1, 5)
+		Global.UPGRADE_SCORE += 20 + randf_range(1, 5)
+		upgradeScoreUI.value = Global.UPGRADE_SCORE / Global.UPGRADE_SCORE_TARGET * 100
+		if Global.UPGRADE_SCORE >= Global.UPGRADE_SCORE_TARGET:
+			upgradeListUI.visible = true
+			get_tree().paused = true
+			# Popup upgrade UI here
+			Global.UPGRADE_SCORE_TARGET = Global.UPGRADE_SCORE + 500
+			upgradeScoreUI.value = 0
+			Global.UPGRADE_SCORE = 0
+			
 		scoreUI.text = "Score: " + str(Global.SCORE)
 		body.queue_free()
 		queue_free()

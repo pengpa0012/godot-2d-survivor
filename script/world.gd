@@ -7,6 +7,7 @@ extends Node2D
 
 var MIN_ENEMY = 30
 
+
 func _on_timer_timeout():
 	if enemies.get_child_count() <= MIN_ENEMY && is_instance_valid(player):
 		var enemy = enemy_scene.instantiate() as CharacterBody2D

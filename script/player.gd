@@ -18,14 +18,10 @@ func _physics_process(delta):
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		
-	
-	if Input.is_action_just_pressed("ui_accept") && is_instance_valid(self):
-		shoot(delta)
-
 	move_and_slide()
 	
 	
-func shoot(delta):
+func shoot():
 	var bullet = bullet_scene.instantiate() as Area2D
 	bullet.position = self.position
 	bullet.transform = aim.transform
@@ -38,3 +34,9 @@ func _on_hitbox_area_entered(area):
 	if Global.HEALTH <= 0:
 		queue_free()
 		get_tree().change_scene_to_file("res://scene/end_menu.tscn")
+
+
+func _on_fire_timeout():
+	if is_instance_valid(self):
+		shoot()
+		$fire.start()

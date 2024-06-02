@@ -3,3 +3,7 @@ extends Node
 
 var SCORE = 0
 var HEALTH = 5
+var FIRERATE = 1
+var PROJECTILE_COUNT = 1
+var UPGRADE_SCORE = 0.000
+var UPGRADE_SCORE_TARGET = 500

@@ -1,11 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfkfjtrl41cqk"]
+[gd_scene load_steps=5 format=3 uid="uid://dfkfjtrl41cqk"]
 
 [ext_resource type="PackedScene" uid="uid://cxgeferijl2u" path="res://scene/player.tscn" id="1_4m312"]
 [ext_resource type="Script" path="res://script/world.gd" id="1_mro08"]
 [ext_resource type="PackedScene" uid="uid://dxgdhq8b6ktc" path="res://scene/enemy.tscn" id="2_iquds"]
+[ext_resource type="Script" path="res://upgrade_list.gd" id="4_kt5w1"]
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_mro08")
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="enemy3" parent="enemies" instance=ExtResource("2_iquds")]
+position = Vector2(1018, -268)
+
+[node name="enemy2" parent="enemies" instance=ExtResource("2_iquds")]
+position = Vector2(1308, 574)
+
+[node name="enemy4" parent="enemies" instance=ExtResource("2_iquds")]
+position = Vector2(1278, 196)
+
+[node name="enemy5" parent="enemies" instance=ExtResource("2_iquds")]
+position = Vector2(141, -126)
+
+[node name="enemy6" parent="enemies" instance=ExtResource("2_iquds")]
+position = Vector2(152, 654)
+
+[node name="enemy" parent="enemies" instance=ExtResource("2_iquds")]
+position = Vector2(83, 273)
 
 [node name="player" parent="." instance=ExtResource("1_4m312")]
 position = Vector2(512, 366)
@@ -27,27 +48,45 @@ offset_right = -425.0
 offset_bottom = -295.0
 text = "Score: 0"
 
-[node name="enemies" type="Node2D" parent="."]
+[node name="upgrade_score" type="ProgressBar" parent="player/Camera2D"]
+offset_left = -569.0
+offset_top = 290.0
+offset_right = 567.0
+offset_bottom = 317.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
 
-[node name="enemy3" parent="enemies" instance=ExtResource("2_iquds")]
-position = Vector2(1018, -268)
+[node name="upgrade_list" type="PanelContainer" parent="player/Camera2D"]
+self_modulate = Color(0.122252, 0.122252, 0.122252, 1)
+offset_left = -232.0
+offset_top = -299.0
+offset_right = 230.0
+offset_bottom = 270.0
+script = ExtResource("4_kt5w1")
 
-[node name="enemy2" parent="enemies" instance=ExtResource("2_iquds")]
-position = Vector2(1308, 574)
+[node name="Button" type="Button" parent="player/Camera2D/upgrade_list"]
+self_modulate = Color(0.74902, 0.74902, 0.74902, 1)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Option 1"
 
-[node name="enemy4" parent="enemies" instance=ExtResource("2_iquds")]
-position = Vector2(1278, 196)
+[node name="margin_panel" type="MarginContainer" parent="player/Camera2D/upgrade_list"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
 
-[node name="enemy5" parent="enemies" instance=ExtResource("2_iquds")]
-position = Vector2(141, -126)
+[node name="VBoxContainer" type="VBoxContainer" parent="player/Camera2D/upgrade_list/margin_panel"]
+layout_mode = 2
+size_flags_vertical = 4
 
-[node name="enemy6" parent="enemies" instance=ExtResource("2_iquds")]
-position = Vector2(151, 606)
-
-[node name="enemy" parent="enemies" instance=ExtResource("2_iquds")]
-position = Vector2(83, 273)
+[node name="Button2" type="Button" parent="player/Camera2D/upgrade_list/margin_panel/VBoxContainer"]
+self_modulate = Color(0.74978, 0.74978, 0.74978, 1)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Option 1"
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="pressed" from="player/Camera2D/upgrade_list/Button" to="player/Camera2D/upgrade_list" method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
