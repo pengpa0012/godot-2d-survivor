@@ -15,6 +15,7 @@ func _on_timer_timeout():
 		enemy.position.y = player.position.y + randi_range(-1000, 1000)
 		# Adjust health depends on score
 		enemy.HEALTH = floor(Global.SCORE / 500.0) + 1
+		enemy.INIT_HEALTH = enemy.HEALTH
 		MIN_ENEMY = floor(Global.SCORE / 100) + 100
 		enemies.add_child(enemy)
 		$Timer.start()
