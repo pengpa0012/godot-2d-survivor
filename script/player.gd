@@ -23,10 +23,14 @@ func _physics_process(delta):
 	
 	
 func shoot():
-	var bullet = bullet_scene.instantiate() as Area2D
-	bullet.position = self.position
-	bullet.transform = aim.transform
-	add_child(bullet)
+	var rotate = 0
+	for n in Global.PROJECTILE_COUNT:
+		var bullet = bullet_scene.instantiate() as Area2D
+		bullet.position = self.position
+		bullet.transform = aim.transform
+		bullet.rotate(rotate)
+		rotate += 0.1
+		add_child(bullet)
 
 func _on_hitbox_area_entered(area):
 	if area.name == "enemy":

@@ -9,3 +9,11 @@ func _on_button_pressed():
 		player.fireTimer.wait_time -= 0.1
 	upgradeList.visible = false
 	get_tree().paused = false
+
+
+func _on_button_2_pressed():
+	# add another projectile
+	if Global.PROJECTILE_COUNT < 100:
+		Global.PROJECTILE_COUNT += 1
+	upgradeList.visible = false
+	get_tree().paused = false

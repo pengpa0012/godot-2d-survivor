@@ -76,14 +76,19 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 size_flags_vertical = 4
 
+[node name="Button2" type="Button" parent="player/Camera2D/upgrade_list/margin_panel/VBoxContainer"]
+layout_mode = 2
+text = "Add another projectile"
+
 [node name="Button" type="Button" parent="player/Camera2D/upgrade_list/margin_panel/VBoxContainer"]
 self_modulate = Color(0.74902, 0.74902, 0.74902, 1)
 layout_mode = 2
 size_flags_vertical = 4
-text = "Option 1"
+text = "Increase Firerate by -0.1s"
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="pressed" from="player/Camera2D/upgrade_list/margin_panel/VBoxContainer/Button2" to="player/Camera2D/upgrade_list" method="_on_button_2_pressed"]
 [connection signal="pressed" from="player/Camera2D/upgrade_list/margin_panel/VBoxContainer/Button" to="player/Camera2D/upgrade_list" method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

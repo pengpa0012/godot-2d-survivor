@@ -1,12 +1,13 @@
 extends Area2D
 
-var speed = 750
 @onready var scoreUI = get_node("/root/world/player/Camera2D/score")
 @onready var upgradeScoreUI = get_node("/root/world/player/Camera2D/upgrade_score")
 @onready var upgradeListUI = get_node("/root/world/player/Camera2D/upgrade_list")
 
+var SPEED = 750
+
 func _process(delta):
-	position += transform.x * speed * delta
+	position += transform.x * SPEED * delta
 
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
