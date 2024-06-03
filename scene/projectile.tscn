@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c84j67ebm38la"]
+[gd_scene load_steps=5 format=3 uid="uid://c84j67ebm38la"]
 
 [ext_resource type="Texture2D" uid="uid://bhyxpw32i750f" path="res://icon.svg" id="1_248yl"]
 [ext_resource type="Script" path="res://script/projectile.gd" id="1_xwa6r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ldqrk"]
 radius = 4.0
+
+[sub_resource type="Curve" id="Curve_1o3hh"]
+max_value = 10.0
+_data = [Vector2(0, 0.769231), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="projectile" type="Area2D"]
 script = ExtResource("1_xwa6r")
@@ -18,5 +23,26 @@ shape = SubResource("CircleShape2D_ldqrk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[node name="particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 19.5
+initial_velocity_max = 39.7
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_1o3hh")
+color = Color(1, 1, 0, 0.654902)
+
+[node name="death_delay" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="death_delay" to="." method="_on_death_delay_timeout"]

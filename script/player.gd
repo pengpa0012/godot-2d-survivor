@@ -23,18 +23,20 @@ func _physics_process(delta):
 	
 	
 func shoot():
+	$shoot.play()
 	var rotate = 0
 	for n in Global.PROJECTILE_COUNT:
 		var bullet = bullet_scene.instantiate() as Area2D
 		bullet.position = self.position
 		bullet.transform = aim.transform
 		bullet.rotate(rotate)
-		rotate += 0.1
+		rotate += (0.1 + n) * 0.1 if n % 2 == 0 else (0.1 + n) * -0.1
 		add_child(bullet)
 
 func _on_hitbox_area_entered(area):
 	if area.name == "enemy":
 		Global.HEALTH -= 1
+		$hurt.play()
 	healthUI.text = "Health: " + str(Global.HEALTH)
 	if Global.HEALTH <= 0:
 		queue_free()

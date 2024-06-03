@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxgeferijl2u"]
+[gd_scene load_steps=8 format=3 uid="uid://cxgeferijl2u"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_uhno3"]
 [ext_resource type="Texture2D" uid="uid://bhyxpw32i750f" path="res://icon.svg" id="1_xc014"]
+[ext_resource type="AudioStream" uid="uid://cual6ks0omxvk" path="res://sfx/shoot.mp3" id="2_acj3s"]
 [ext_resource type="Script" path="res://script/aim.gd" id="2_bll8h"]
+[ext_resource type="AudioStream" uid="uid://bbm85y2to3dxo" path="res://sfx/hurt.mp3" id="2_t8l5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4dsk"]
 size = Vector2(42.5, 42.5)
@@ -12,6 +14,14 @@ size = Vector2(48, 48)
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_uhno3")
+
+[node name="hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_t8l5s")
+volume_db = 10.0
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_acj3s")
+volume_db = -10.0
 
 [node name="fire" type="Timer" parent="."]
 autostart = true
