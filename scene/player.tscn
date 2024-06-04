@@ -1,16 +1,60 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxgeferijl2u"]
+[gd_scene load_steps=15 format=3 uid="uid://cxgeferijl2u"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_uhno3"]
 [ext_resource type="Texture2D" uid="uid://bhyxpw32i750f" path="res://icon.svg" id="1_xc014"]
 [ext_resource type="AudioStream" uid="uid://cual6ks0omxvk" path="res://sfx/shoot.mp3" id="2_acj3s"]
 [ext_resource type="Script" path="res://script/aim.gd" id="2_bll8h"]
 [ext_resource type="AudioStream" uid="uid://bbm85y2to3dxo" path="res://sfx/hurt.mp3" id="2_t8l5s"]
+[ext_resource type="Texture2D" uid="uid://c7sxms11p5wtr" path="res://Undead_pumpking_Sprites.png" id="4_pkjvs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d4dsk"]
-size = Vector2(42.5, 42.5)
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4bkc"]
+atlas = ExtResource("4_pkjvs")
+region = Rect2(0, 0, 64, 51)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_77rby"]
-size = Vector2(48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5k2h"]
+atlas = ExtResource("4_pkjvs")
+region = Rect2(64, 0, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lb62"]
+atlas = ExtResource("4_pkjvs")
+region = Rect2(128, 0, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgtj2"]
+atlas = ExtResource("4_pkjvs")
+region = Rect2(192, 0, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15oi3"]
+atlas = ExtResource("4_pkjvs")
+region = Rect2(256, 0, 64, 51)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fsbxv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4bkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5k2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lb62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgtj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15oi3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fe8rd"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n330n"]
+radius = 18.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_uhno3")
@@ -26,20 +70,28 @@ volume_db = -10.0
 [node name="fire" type="Timer" parent="."]
 autostart = true
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_fsbxv")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.377474
+
 [node name="aim" type="Marker2D" parent="."]
 script = ExtResource("2_bll8h")
 
 [node name="Icon" type="Sprite2D" parent="aim"]
+visible = false
 scale = Vector2(0.371094, 0.371094)
 texture = ExtResource("1_xc014")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_d4dsk")
+shape = SubResource("CircleShape2D_fe8rd")
 
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-shape = SubResource("RectangleShape2D_77rby")
+shape = SubResource("CircleShape2D_n330n")
 debug_color = Color(0.961212, 0.198522, 0, 0.42)
 
 [connection signal="timeout" from="fire" to="." method="_on_fire_timeout"]

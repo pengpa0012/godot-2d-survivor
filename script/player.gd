@@ -1,5 +1,5 @@
 extends CharacterBody2D
-const SPEED = 150.0
+const SPEED = 200.0
 
 @export var bullet_scene: PackedScene = preload("res://scene/projectile.tscn")
 @onready var aim = get_node("aim")

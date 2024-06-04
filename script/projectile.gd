@@ -22,7 +22,7 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 			upgradeListUI.visible = true
 			get_tree().paused = true
 			# Popup upgrade UI here
-			Global.UPGRADE_SCORE_TARGET = Global.UPGRADE_SCORE + 500
+			Global.UPGRADE_SCORE_TARGET += ceil(Global.UPGRADE_SCORE / 4)
 			upgradeScoreUI.value = 0
 			Global.UPGRADE_SCORE = 0
 			

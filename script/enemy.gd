@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var HEALTH_BAR = $HealthBar
 @onready var colShape = get_node("CollisionShape2D")
 @onready var colAreaShape = get_node("enemy/CollisionShape2D")
-var SPEED = 50
+var SPEED = 100
 var HEALTH = 1.0
 var INIT_HEALTH = 1.0
 var IS_DEAD = false

@@ -1,36 +1,76 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxgdhq8b6ktc"]
+[gd_scene load_steps=11 format=3 uid="uid://dxgdhq8b6ktc"]
 
 [ext_resource type="Script" path="res://script/enemy.gd" id="1_ntoe2"]
-[ext_resource type="Texture2D" uid="uid://bhyxpw32i750f" path="res://icon.svg" id="1_ou4e2"]
+[ext_resource type="Texture2D" uid="uid://do8jenkvgirp8" path="res://corona_idle.png" id="2_r3547"]
 [ext_resource type="AudioStream" uid="uid://clcfsab1s5i62" path="res://sfx/explode.mp3" id="3_72gd2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xhui"]
-size = Vector2(39.25, 38)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8fm1"]
+atlas = ExtResource("2_r3547")
+region = Rect2(0, 0, 65, 65)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_djo22"]
-size = Vector2(40, 40)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7h0cs"]
+atlas = ExtResource("2_r3547")
+region = Rect2(65, 0, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poto2"]
+atlas = ExtResource("2_r3547")
+region = Rect2(130, 0, 65, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj0kl"]
+atlas = ExtResource("2_r3547")
+region = Rect2(195, 0, 65, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kx1pa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8fm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7h0cs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poto2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj0kl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0l087"]
+radius = 15.5081
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqfdu"]
+radius = 16.0312
 
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_ntoe2")
 
-[node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.302734, 0.302734)
-texture = ExtResource("1_ou4e2")
+[node name="Icon" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.528483, 0.528483)
+sprite_frames = SubResource("SpriteFrames_kx1pa")
+autoplay = "default"
+frame_progress = 0.838487
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_2xhui")
+shape = SubResource("CircleShape2D_0l087")
 
 [node name="enemy" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
-shape = SubResource("RectangleShape2D_djo22")
+shape = SubResource("CircleShape2D_oqfdu")
 debug_color = Color(0.9948, 0, 0.216148, 0.42)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -20.0
-offset_top = -28.0
-offset_right = 20.0
-offset_bottom = -22.0
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
+offset_left = -14.0
+offset_top = -21.0
+offset_right = 15.0
+offset_bottom = -17.0
 value = 100.0
 show_percentage = false
 

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="2d-survivor"
+config/name="Another 2D Survivor But Not Good"
 run/main_scene="res://scene/start_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
